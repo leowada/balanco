@@ -1,4 +1,4 @@
-package com.wada.balanco.login;
+package com.wada.balanco.login.model;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.wada.balanco.login;
+package com.wada.balanco.login.model;
 
 import org.hibernate.validator.constraints.Length;
 
@@ -8,8 +8,8 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "usercustom")
+public class UserCustom {
 
     private Integer id;
     private String email;
@@ -19,7 +19,10 @@ public class User {
     private Boolean ativo;
     private Collection<Role> roles;
 
-    public User(String email, String password, String nome, String sobrenome, Boolean ativo, Collection<Role> roles) {
+    public UserCustom() {
+    }
+
+    public UserCustom(String email, String password, String nome, String sobrenome, Boolean ativo, Collection<Role> roles) {
         this.email = email;
         this.password = password;
         this.nome = nome;

@@ -1,5 +1,9 @@
-package com.wada.balanco.login;
+package com.wada.balanco.login.service;
 
+import com.wada.balanco.login.model.Role;
+import com.wada.balanco.login.model.UserCustom;
+import com.wada.balanco.login.repository.RoleRepository;
+import com.wada.balanco.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,14 +27,14 @@ public class UserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    public User findUserByEmail(String email) {
+    public UserCustom findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public User saveUser(User user) {
+    public UserCustom saveUser(UserCustom user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setAtivo(true);
-        Role userRole = roleRepository.findByRole("ADMIN");
+        Role userRole = roleRepository.findByDescricao("ADMIN");
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         userRepository.save(user);
         return user;
