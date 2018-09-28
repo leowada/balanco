@@ -1,5 +1,9 @@
 package com.wada.balanco.login;
 
+import com.wada.balanco.login.model.UserCustom;
+import com.wada.balanco.login.repository.RoleRepository;
+import com.wada.balanco.login.repository.UserRepository;
+import com.wada.balanco.login.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -11,7 +15,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class UserServiceTest {
+public class UserCustomServiceTest {
 
     @Mock
     private UserRepository mockUserRepository;
@@ -21,7 +25,7 @@ public class UserServiceTest {
     private BCryptPasswordEncoder mockBCryptPasswordEncoder;
 
     private UserService userServiceUnderTest;
-    private User user;
+    private UserCustom user;
 
     @Before
     public void setUp() {
@@ -29,7 +33,7 @@ public class UserServiceTest {
         userServiceUnderTest = new UserService(mockUserRepository,
                 mockRoleRepository,
                 mockBCryptPasswordEncoder);
-        user = new User("test@test.com", null, "Gustavo", "Ponce", null, null);
+        user = new UserCustom("test@test.com", null, "Gustavo", "Ponce", null, null);
 
         Mockito.when(mockUserRepository.save(any()))
                 .thenReturn(user);
@@ -43,7 +47,7 @@ public class UserServiceTest {
         final String email = "test@test.com";
 
         // Run the test
-        final User result = userServiceUnderTest.findUserByEmail(email);
+        final UserCustom result = userServiceUnderTest.findUserByEmail(email);
 
         // Verify the results
         assertEquals(email, result.getEmail());
@@ -53,10 +57,10 @@ public class UserServiceTest {
     public void testSaveUser() {
         // Setup
         final String email = "test@test.com";
-        User user = new User(email, null, "Gustavo", "Ponce", null, null);
+        UserCustom user = new UserCustom(email, null, "Gustavo", "Ponce", null, null);
 
         // Run the test
-        User result = userServiceUnderTest.saveUser(user);
+        UserCustom result = userServiceUnderTest.saveUser(user);
 
         // Verify the results
         assertEquals(email, result.getEmail());

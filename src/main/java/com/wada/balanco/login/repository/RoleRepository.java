@@ -1,5 +1,6 @@
-package com.wada.balanco.login;
+package com.wada.balanco.login.repository;
 
+import com.wada.balanco.login.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,7 +12,7 @@ public interface RoleRepository extends JpaRepository<Role, Integer> {
      * @param descricao
      * @return
      */
-    Role findByRole(String descricao);
+    Role findByDescricao(String descricao);
 
 
 }
